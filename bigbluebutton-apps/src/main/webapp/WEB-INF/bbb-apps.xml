@@ -138,21 +138,21 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 	<bean id="whiteboardRoomManager" class="org.bigbluebutton.conference.service.whiteboard.WhiteboardRoomManager"/>
 	<!-- END WHITEBOARD -->
 
-    <!-- VIDEO DRAW -->
-    <bean id="videoDrawApplication"
-          class="org.bigbluebutton.conference.service.videodraw.VideoDrawApplication">
-        <property name="roomManager"> <ref local="videoDrawRoomManager"/></property>
+    <!-- VIDEODRAW -->
+    <bean id="videodrawApplication"
+          class="org.bigbluebutton.conference.service.videodraw.WhiteboardApplication">
+        <property name="roomManager"> <ref local="videodrawRoomManager"/></property>
         <property name="recorderApplication"> <ref local="recorderApplication"/></property>
         <property name="connInvokerService"> <ref bean="connInvokerService"/></property>
     </bean>
 
-    <bean id="videodraw.service" class="org.bigbluebutton.conference.service.videodraw.VideoDrawService">
-        <property name="videoDrawApplication"> <ref local="videoDrawApplication"/></property>
+    <bean id="videodraw.service" class="org.bigbluebutton.conference.service.videodraw.WhiteboardService">
+        <property name="videodrawApplication"> <ref local="videodrawApplication"/></property>
     </bean>
 
-    <bean id="videoDrawRoomManager" class="org.bigbluebutton.conference.service.videodraw.WhiteboardRoomManager"/>
-    <!-- END VIDEO DRAW -->
-	
+    <bean id="videodrawRoomManager" class="org.bigbluebutton.conference.service.videodraw.WhiteboardRoomManager"/>
+    <!-- END VIDEODRAW -->
+
 	<!-- RECORDER AND MESSAGING -->
 	
 	<bean id="recorderApplication" class="org.bigbluebutton.conference.service.recorder.RecorderApplication">
