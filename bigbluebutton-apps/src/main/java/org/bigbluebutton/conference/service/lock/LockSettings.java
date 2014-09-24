@@ -32,30 +32,33 @@ public class LockSettings {
 	 * Read a map object received from client 
 	 * */
 	public LockSettings(Map<String, Boolean> lsMap) {
-		if(lsMap.containsKey("allowModeratorLocking"))
-			allowModeratorLocking = lsMap.get("allowModeratorLocking");
-		else
-			allowModeratorLocking = true;
-		
-		if(lsMap.containsKey("disableCam"))
-			disableCam = lsMap.get("disableCam");
-		else
-			disableCam = true;
-			
-		if(lsMap.containsKey("disableMic"))
-			disableMic = lsMap.get("disableMic");
-		else
-			disableMic = true;
-			
-		if(lsMap.containsKey("disablePrivateChat"))
-			disablePrivateChat = lsMap.get("disablePrivateChat");
-		else
-			disablePrivateChat = true;
-			
-		if(lsMap.containsKey("disablePublicChat"))
-			disablePublicChat = lsMap.get("disablePublicChat");
-		else
-			disablePublicChat = true;
+        if(lsMap != null){
+            if(lsMap.containsKey("allowModeratorLocking"))
+                allowModeratorLocking = lsMap.get("allowModeratorLocking");
+            else
+                allowModeratorLocking = true;
+
+            if(lsMap.containsKey("disableCam"))
+                disableCam = lsMap.get("disableCam");
+            else
+                disableCam = true;
+
+            if(lsMap.containsKey("disableMic"))
+                disableMic = lsMap.get("disableMic");
+            else
+                disableMic = true;
+
+            if(lsMap.containsKey("disablePrivateChat"))
+                disablePrivateChat = lsMap.get("disablePrivateChat");
+            else
+                disablePrivateChat = true;
+
+            if(lsMap.containsKey("disablePublicChat"))
+                disablePublicChat = lsMap.get("disablePublicChat");
+            else
+                disablePublicChat = true;
+        }
+
 	}
 	
 	/**
