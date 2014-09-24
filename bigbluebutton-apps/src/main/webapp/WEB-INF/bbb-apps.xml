@@ -137,6 +137,21 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 	
 	<bean id="whiteboardRoomManager" class="org.bigbluebutton.conference.service.whiteboard.WhiteboardRoomManager"/>
 	<!-- END WHITEBOARD -->
+
+    <!-- VIDEO DRAW -->
+    <bean id="videoDrawApplication"
+          class="org.bigbluebutton.conference.service.videodraw.VideoDrawApplication">
+        <property name="roomManager"> <ref local="videoDrawRoomManager"/></property>
+        <property name="recorderApplication"> <ref local="recorderApplication"/></property>
+        <property name="connInvokerService"> <ref bean="connInvokerService"/></property>
+    </bean>
+
+    <bean id="videodraw.service" class="org.bigbluebutton.conference.service.videodraw.VideoDrawService">
+        <property name="videoDrawApplication"> <ref local="videoDrawApplication"/></property>
+    </bean>
+
+    <bean id="videoDrawRoomManager" class="org.bigbluebutton.conference.service.videodraw.WhiteboardRoomManager"/>
+    <!-- END VIDEO DRAW -->
 	
 	<!-- RECORDER AND MESSAGING -->
 	
