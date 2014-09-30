@@ -54,8 +54,8 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 				<ref bean="layoutHandler" />
 				<ref bean="presentationHandler" />
 				<ref bean="voiceHandler" />
+                <ref bean="videoDrawApplication" />
 				<ref bean="whiteboardApplication" />
-				<ref bean="videodrawApplication" />
     		</set>
   		</property>	  
   		<property name="recorderApplication"> <ref bean="recorderApplication"/></property>	
@@ -63,8 +63,9 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 	</bean>
 	
 	<bean id="connInvokerService" class="org.bigbluebutton.conference.ConnectionInvokerService"/>
-	
-	<import resource="bbb-apps.xml" />
+
+
+    <import resource="bbb-apps.xml" />
 	<import resource="bbb-voice-app.xml" />
   <import resource="bbb-voice-freeswitch.xml" />
 </beans>

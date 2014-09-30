@@ -28,13 +28,13 @@ import org.slf4j.Logger;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class WhiteboardService {
+public class VideoDrawService {
 
-	private static Logger log = Red5LoggerFactory.getLogger(WhiteboardService.class, "bigbluebutton");
+	private static Logger log = Red5LoggerFactory.getLogger(VideoDrawService.class, "bigbluebutton");
 	
-	private WhiteboardApplication application;
+	private VideoDrawApplication application;
 
-	public void setWhiteboardApplication(WhiteboardApplication a){
+	public void setVideoDrawApplication(VideoDrawApplication a){
 		log.debug("Setting whiteboard application instance");
 		this.application = a;
 	}
@@ -72,38 +72,38 @@ public class WhiteboardService {
 	}
 	
 	public void setActivePage(Map<String, Object> message){		
-		log.info("WhiteboardApplication - Getting number of shapes for page: " + (Integer) message.get("pageNum"));
+		log.info("VideoDrawApplication - Getting number of shapes for page: " + (Integer) message.get("pageNum"));
 		application.changePage((Integer) message.get("pageNum"));
 	}
 	
 	public void requestAnnotationHistory(Map<String, Object> message) {
-		log.info("WhiteboardApplication - requestAnnotationHistory");
+		log.info("VideoDrawApplication - requestAnnotationHistory");
 		application.sendAnnotationHistory(getBbbSession().getInternalUserID(), 
 				(String) message.get("presentationID"), (Integer) message.get("pageNumber"));
 	}
 		
 	public void clear() {
-		log.info("WhiteboardApplication - Clearing board");
+		log.info("VideoDrawApplication - Clearing board");
 		application.clear();
 	}
 	
 	public void undo() {
-		log.info("WhiteboardApplication - Deleting last graphic");
+		log.info("VideoDrawApplication - Deleting last graphic");
 		application.undo();
 	}
 	
 	public void toggleGrid() {
-		log.info("WhiteboardApplication - Toggling grid mode");
+		log.info("VideoDrawApplication - Toggling grid mode");
 		application.toggleGrid();
 	}
 	
 	public void setActivePresentation(Map<String, Object> message) {		
-		log.info("WhiteboardApplication - Setting active presentation: " + (String)message.get("presentationID"));
+		log.info("VideoDrawApplication - Setting active presentation: " + (String)message.get("presentationID"));
 		application.setActivePresentation((String)message.get("presentationID"), (Integer) message.get("numberOfSlides"));
 	}
 	
 	public void enableWhiteboard(Map<String, Object> message) {
-		log.info("WhiteboardApplication - Setting whiteboard enabled: " + (Boolean)message.get("enabled"));
+		log.info("VideoDrawApplication - Setting whiteboard enabled: " + (Boolean)message.get("enabled"));
 		application.enableWhiteboard((Boolean)message.get("enabled"));
 	}
 	

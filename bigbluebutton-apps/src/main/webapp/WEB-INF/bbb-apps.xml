@@ -67,20 +67,20 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 	
 	<bean id="layout.service" class="org.bigbluebutton.conference.service.layout.LayoutService">
 	    <property name="layoutApplication"><ref local="layoutApplication"/></property>
-   	</bean>	
+   	</bean>
 	<!-- END LAYOUT -->	
 		
 	<!-- BEGIN PRESENTATION -->	
 	<bean id="presentationRoomsManager" class="org.bigbluebutton.conference.service.presentation.PresentationRoomsManager"/>
 			
 	<bean id="presentationHandler" class="org.bigbluebutton.conference.service.presentation.PresentationHandler">
-		<property name="presentationApplication"> 
+		<property name="presentationApplication">
 			<ref local="presentationApplication"/>
 		</property>
-		<property name="recorderApplication"> 
+		<property name="recorderApplication">
 			<ref local="recorderApplication"/>
 		</property>
-		<property name="conversionUpdatesMessageListener"> 
+		<property name="conversionUpdatesMessageListener">
 			<ref local="conversionUpdatesMessageListener" />
 		</property>
 	</bean>
@@ -124,7 +124,7 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 	<!-- END CHAT -->
 	
 	<!-- WHITEBOARD -->
-	<bean id="whiteboardApplication" 
+	<bean id="whiteboardApplication"
 	    class="org.bigbluebutton.conference.service.whiteboard.WhiteboardApplication">
 	    <property name="roomManager"> <ref local="whiteboardRoomManager"/></property>
 	    <property name="recorderApplication"> <ref local="recorderApplication"/></property>
@@ -133,21 +133,22 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 	
 	<bean id="whiteboard.service" class="org.bigbluebutton.conference.service.whiteboard.WhiteboardService">
 		<property name="whiteboardApplication"> <ref local="whiteboardApplication"/></property>
+		<property name="videodrawService"> <ref local="videodraw.service"/></property>
 	</bean>
 	
 	<bean id="whiteboardRoomManager" class="org.bigbluebutton.conference.service.whiteboard.WhiteboardRoomManager"/>
 	<!-- END WHITEBOARD -->
 
     <!-- VIDEODRAW -->
-    <bean id="videodrawApplication"
-          class="org.bigbluebutton.conference.service.videodraw.WhiteboardApplication">
+    <bean id="videoDrawApplication"
+          class="org.bigbluebutton.conference.service.videodraw.VideoDrawApplication">
         <property name="roomManager"> <ref local="videodrawRoomManager"/></property>
         <property name="recorderApplication"> <ref local="recorderApplication"/></property>
         <property name="connInvokerService"> <ref bean="connInvokerService"/></property>
     </bean>
 
-    <bean id="videodraw.service" class="org.bigbluebutton.conference.service.videodraw.WhiteboardService">
-        <property name="videodrawApplication"> <ref local="videodrawApplication"/></property>
+    <bean id="videodraw.service" class="org.bigbluebutton.conference.service.videodraw.VideoDrawService">
+        <property name="videoDrawApplication"> <ref local="videoDrawApplication"/></property>
     </bean>
 
     <bean id="videodrawRoomManager" class="org.bigbluebutton.conference.service.videodraw.WhiteboardRoomManager"/>
@@ -209,23 +210,23 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 	<!-- START Polling  -->
 	<bean id="pollHandler"
 	      class="org.bigbluebutton.conference.service.poll.PollHandler">
-		<property name="pollApplication"> 
+		<property name="pollApplication">
 			<ref local="pollApplication"/>
 		</property>
-		<property name="recorderApplication"> 
+		<property name="recorderApplication">
 			<ref local="recorderApplication"/>
 		</property>
 	</bean>
 	
 	<bean id="pollApplication" class="org.bigbluebutton.conference.service.poll.PollApplication">
-		<property name="roomsManager"> 
+		<property name="roomsManager">
 			<ref local="pollRoomsManager"/>
 		</property>
 	</bean>
 	
-	<bean id="poll.service" 
+	<bean id="poll.service"
 	      class="org.bigbluebutton.conference.service.poll.PollService">
-		<property name="pollApplication"> 
+		<property name="pollApplication">
 			<ref local="pollApplication"/>
 		</property>
 	</bean>
@@ -236,7 +237,7 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 	<bean id="pollRecorder"
 	      class="org.bigbluebutton.conference.service.recorder.polling.PollRecorder">
 		<property name="redisPool">
-			<ref local="redisPool" /> 
-		</property>   
+			<ref local="redisPool" />
+		</property>
 	</bean>
 </beans>
