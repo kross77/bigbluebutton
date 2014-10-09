@@ -82,14 +82,16 @@ public class VideoDrawService {
 				(String) message.get("presentationID"), (Integer) message.get("pageNumber"));
 	}
 		
-	public void clear() {
+	public void clear(Map<String, Object> annotation) {
 		log.info("VideoDrawApplication - Clearing board");
-		application.clear();
+        Annotation a = new Annotation(annotation);
+		application.clear(a);
 	}
 	
-	public void undo() {
+	public void undo(Map<String, Object> annotation) {
 		log.info("VideoDrawApplication - Deleting last graphic");
-		application.undo();
+        Annotation a = new Annotation(annotation);
+		application.undo(a);
 	}
 	
 	public void toggleGrid() {

@@ -208,22 +208,22 @@ public class VideoDrawApplication extends ApplicationAdapter implements IApplica
 		connInvokerService.sendMessage(m);
 	}
 			
-	public void clear() {
-		roomManager.getRoom(getMeetingId()).clear();
+	public void clear(Annotation annotation) {
+		//roomManager.getRoom(getMeetingId()).clear();
 
-		Map<String, Object> message = new HashMap<String, Object>();		
-		ClientMessage m = new ClientMessage(ClientMessage.BROADCAST, getMeetingId(), "VideoDrawClearCommand", message);
+		//Map<String, Object> message = new HashMap<String, Object>();
+		ClientMessage m = new ClientMessage(ClientMessage.BROADCAST, getMeetingId(), "VideoDrawClearCommand", annotation.getAnnotation());
 		connInvokerService.sendMessage(m);		
 	}
 			
-	public void undo() {
-		roomManager.getRoom(getMeetingId()).undo();
+	public void undo(Annotation annotation) {
+		//roomManager.getRoom(getMeetingId()).undo();
 
-		Map<String, Object> message = new HashMap<String, Object>();		
-		ClientMessage m = new ClientMessage(ClientMessage.BROADCAST, getMeetingId(), "VideoDrawUndoCommand", message);
+		//Map<String, Object> message = new HashMap<String, Object>();
+		ClientMessage m = new ClientMessage(ClientMessage.BROADCAST, getMeetingId(), "VideoDrawUndoCommand", annotation.getAnnotation());
 		connInvokerService.sendMessage(m);
 	}
-	
+
 	public void toggleGrid(){
 //		System.out.println("toggling grid mode ");
 //		roomManager.getRoom(getLocalScope().getName()).toggleGrid();
