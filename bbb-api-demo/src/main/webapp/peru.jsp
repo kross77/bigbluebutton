@@ -48,18 +48,38 @@ if (request.getParameterMap().isEmpty()) {
 <h2>Join Demo Meeting</h2>
 
 
-<FORM NAME="form1" METHOD="GET"> 
-<table cellpadding="5" cellspacing="5" style="width: 400px; ">
-	<tbody>
+<FORM NAME="form1" METHOD="GET">
+	<table cellpadding="5" cellspacing="5" style="width: 400px; ">
+		<tbody>
 		<tr>
 			<td>
 				&nbsp;</td>
 			<td style="text-align: right; ">
-				Full Name:</td>
+				Name:</td>
 			<td style="width: 5px; ">
 				&nbsp;</td>
 			<td style="text-align: left ">
 				<input type="text" autofocus required name="username" /></td>
+		</tr>
+		<tr>
+			<td>
+				&nbsp;</td>
+			<td style="text-align: right; ">
+				Patient Name:</td>
+			<td style="width: 5px; ">
+				&nbsp;</td>
+			<td style="text-align: left ">
+				<input type="text" autofocus required name="patient" /></td>
+		</tr>
+		<tr>
+			<td>
+				&nbsp;</td>
+			<td style="text-align: right; ">
+				Password:</td>
+			<td style="width: 5px; ">
+				&nbsp;</td>
+			<td style="text-align: left ">
+				<input type="password" required name="password" /></td>
 		</tr>
 		<tr>
 			<td>
@@ -70,12 +90,11 @@ if (request.getParameterMap().isEmpty()) {
 				&nbsp;</td>
 			<td>
 				<input type="submit" value="Join" /></td>
-		</tr>	
-	</tbody>
-</table>
-<INPUT TYPE=hidden NAME=action VALUE="create">
+		</tr>
+		</tbody>
+	</table>
+	<INPUT TYPE=hidden NAME=action VALUE="create">
 </FORM>
-
 
 <%
 } else  if (request.getParameter("action").equals("create")) {
