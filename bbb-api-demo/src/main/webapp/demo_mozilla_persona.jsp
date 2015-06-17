@@ -134,7 +134,7 @@ function loggedIn(res){
 		HashMap<String,String> map = gson.fromJson(jsonResp, new TypeToken<Map<String, String>>() {}.getType());
 
 		if(map.get("status").equalsIgnoreCase("okay")){
-			joinURL = getJoinURL(map.get("email"), "Demo Meeting", "false", null, null, null);
+			joinURL = getJoinURL(map.get("email"), "md", "Demo Meeting", "false", null, null, null);
 		}
 	}catch(Exception e){
 

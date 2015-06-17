@@ -145,7 +145,7 @@ if (request.getParameterMap().isEmpty()) {
     byte[] mac_key = (byte[]) request.getSession().getAttribute(ATTR_MAC);
     String alias = (String) request.getSession().getAttribute(ATTR_ALIAS);
     Authentication authentication = manager.getAuthentication(request, mac_key, alias);
-	String joinURL = getJoinURL(authentication.getFullname(), "Demo Meeting", null, null, null, null );
+	String joinURL = getJoinURL(authentication.getFullname(), "md" "Demo Meeting", null, null, null, null );
 
 	if (joinURL.startsWith("http://")) { 
 %>

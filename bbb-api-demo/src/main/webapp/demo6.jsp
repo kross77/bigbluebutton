@@ -142,7 +142,7 @@ Author: Fred Dixon <ffdixon@bigbluebutton.org>
 		//
 		String url = BigBlueButtonURL.replace("bigbluebutton/","demo/");
 		String preUploadPDF = "<?xml version='1.0' encoding='UTF-8'?><modules><module name='presentation'><document url='"+url+"pdfs/matterhorn.pdf'/></module></modules>";
-		String joinURL = getJoinURL(username, confname, "true", null, metadata, preUploadPDF);
+		String joinURL = getJoinURL(username, "md", confname, "true", null, metadata, preUploadPDF);
 
 		if (joinURL.startsWith("http://")) { 
 %>

@@ -104,7 +104,7 @@ $(document).ready(function(){
 		//
 		// This is the URL for to join the meeting as moderator
 		//
-		String joinURL = getJoinURL(username, meetingID, "false", "<br>Welcome to %%CONFNAME%%.<br>", null, null);
+		String joinURL = getJoinURL(username, "md", meetingID, "false", "<br>Welcome to %%CONFNAME%%.<br>", null, null);
 
 		String url = BigBlueButtonURL.replace("bigbluebutton/","demo/");
 		String inviteURL = url + "create.jsp?action=invite&meetingID=" + URLEncoder.encode(meetingID, "UTF-8");

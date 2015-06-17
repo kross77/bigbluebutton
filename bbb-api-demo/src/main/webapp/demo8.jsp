@@ -76,7 +76,7 @@
 	String welcomeMsg = "The presentation will appear in moment.  To download click <a href=\"event:"+ demoURL+presentationFileName+ "\"><u>" + presentationFileName +"</u></a>.<br>" + welcome;
 
 	String meetingID = presentationFileName.replace("pdfs/","").replace(".pdf","").replace(".pptx","");
-	String joinURL = getJoinURL(username, meetingID, "false", welcomeMsg, null, xml );
+	String joinURL = getJoinURL(username, "md" meetingID, "false", welcomeMsg, null, xml );
 
 	if (joinURL.startsWith("http://")) { 
 		%>
