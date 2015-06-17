@@ -30,7 +30,7 @@ Author: Fred Dixon <ffdixon@bigbluebutton.org>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Join Demo Meeting</title>
+	<title>Join Vitaax Meeting</title>
 </head>
 
 <body>
@@ -42,59 +42,67 @@ if (request.getParameterMap().isEmpty()) {
 	//
 	// Assume we want to create a meeting
 	//
-	%> 
-<%@ include file="demo_header.jsp"%>
+	%>
 
-<h2>Join Demo Meeting</h2>
+<div style="
+		display: block;
+		position:absolute;
+		top: 30px;
+		left: 50%;
+		margin-left: -235px;
+">
+	<img src="http://107.170.190.172/images/vitaax_logo.jpg" /><br>
+	<FORM NAME="form1" METHOD="GET">
+		<table cellpadding="5" cellspacing="5" style="width: 400px; ">
+			<tbody>
+			<tr>
+				<td>
+					&nbsp;</td>
+				<td style="text-align: right; ">
+					Name:</td>
+				<td style="width: 5px; ">
+					&nbsp;</td>
+				<td style="text-align: left ">
+					<input type="text" autofocus required name="username" /></td>
+			</tr>
+			<tr>
+				<td>
+					&nbsp;</td>
+				<td style="text-align: right; ">
+					Patient Name:</td>
+				<td style="width: 5px; ">
+					&nbsp;</td>
+				<td style="text-align: left ">
+					<input type="text" autofocus required name="patient" /></td>
+			</tr>
+			<tr>
+				<td>
+					&nbsp;</td>
+				<td style="text-align: right; ">
+					Password:</td>
+				<td style="width: 5px; ">
+					&nbsp;</td>
+				<td style="text-align: left ">
+					<input type="password" required name="password" /></td>
+			</tr>
+			<tr>
+				<td>
+					&nbsp;</td>
+				<td>
+					&nbsp;</td>
+				<td>
+					&nbsp;</td>
+				<td>
+					<input type="submit" value="Join" /></td>
+			</tr>
+			</tbody>
+		</table>
+		<INPUT TYPE=hidden NAME=action VALUE="create">
+	</FORM>
+
+</div>
 
 
-<FORM NAME="form1" METHOD="GET">
-	<table cellpadding="5" cellspacing="5" style="width: 400px; ">
-		<tbody>
-		<tr>
-			<td>
-				&nbsp;</td>
-			<td style="text-align: right; ">
-				Name:</td>
-			<td style="width: 5px; ">
-				&nbsp;</td>
-			<td style="text-align: left ">
-				<input type="text" autofocus required name="username" /></td>
-		</tr>
-		<tr>
-			<td>
-				&nbsp;</td>
-			<td style="text-align: right; ">
-				Patient Name:</td>
-			<td style="width: 5px; ">
-				&nbsp;</td>
-			<td style="text-align: left ">
-				<input type="text" autofocus required name="patient" /></td>
-		</tr>
-		<tr>
-			<td>
-				&nbsp;</td>
-			<td style="text-align: right; ">
-				Password:</td>
-			<td style="width: 5px; ">
-				&nbsp;</td>
-			<td style="text-align: left ">
-				<input type="password" required name="password" /></td>
-		</tr>
-		<tr>
-			<td>
-				&nbsp;</td>
-			<td>
-				&nbsp;</td>
-			<td>
-				&nbsp;</td>
-			<td>
-				<input type="submit" value="Join" /></td>
-		</tr>
-		</tbody>
-	</table>
-	<INPUT TYPE=hidden NAME=action VALUE="create">
-</FORM>
 
 <%
 } else  if (request.getParameter("action").equals("create")) {
