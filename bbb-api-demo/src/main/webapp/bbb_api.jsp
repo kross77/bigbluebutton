@@ -35,7 +35,14 @@
 
 <%@ include file="bbb_api_conf.jsp"%> 
 
-<%!//
+<%!
+	private Document getDocument(String base_url_create, String xml_param, String create_parameters, Document doc) throws ParserConfigurationException, IOException, SAXException {
+		String url = base_url_create + create_parameters
+			+ "&checksum="
+			+ checksum("create" + create_parameters + salt);
+		doc = parseXml( postURL( url, xml_param ) );
+		return doc;
+	}//
 // Create a meeting with specific 
 //    - meetingID
 //    - welcome message
@@ -196,12 +203,21 @@ public String getJoinURL(String username, String password, String meetingID, Str
 	// Attempt to create a meeting using meetingID
 	Document doc = null;
 	try {
-		String url = base_url_create + create_parameters
-			+ "&checksum="
-			+ checksum("create" + create_parameters + salt); 
-		doc = parseXml( postURL( url, xml_param ) );
+		doc = getDocument(base_url_create, xml_param, create_parameters, doc);
 	} catch (Exception e) {
 		e.printStackTrace();
+	}
+
+	if(!(doc != null)){
+		try {
+			doc = getDocument(base_url_create, xml_param, create_parameters, doc);
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		}
 	}
 
 	if (doc.getElementsByTagName("returncode").item(0).getTextContent()
