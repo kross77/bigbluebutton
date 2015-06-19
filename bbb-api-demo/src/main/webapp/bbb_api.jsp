@@ -195,54 +195,63 @@ public String getJoinURL(String username, String password, String meetingID, Str
 
 	// Attempt to create a meeting using meetingID
 	Document doc = null;
-	try {
-		String url = base_url_create + create_parameters
+	String url = base_url_create + create_parameters
 			+ "&checksum="
-			+ checksum("create" + create_parameters + salt); 
+			+ checksum("create" + create_parameters + salt);
+	try {
+
 		doc = parseXml( postURL( url, xml_param ) );
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
-
-
-	if(doc != null){
-		if (doc.getElementsByTagName("returncode").item(0).getTextContent()
-				.trim().equals("SUCCESS")) {
-
-			//
-			// Looks good, now return a URL to join that meeting
-			//
-
-			String join_parameters = "meetingID=" + urlEncode(meetingID)
-					+ "&fullName=" + urlEncode(username) + "&password="+password;
-
-
-			Document joinDoc = null;
-			String joinURL = null;
-			try {
-				joinURL = base_url_join + join_parameters + "&checksum="
-						+ checksum("join" + join_parameters + salt);
-				joinDoc = parseXml( postURL(joinURL, xml_param));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			if (joinDoc.getElementsByTagName("returncode").item(0).getTextContent()
-					.trim().equals("SUCCESS")) {
-				return joinURL;
-			}
-
-			return BigBlueButtonURL;
+	if(!(doc != null)){
+		try {
+			wait(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		try {
+			doc = parseXml( postURL( url, xml_param ) );
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
-		return doc.getElementsByTagName("messageKey").item(0).getTextContent()
-				.trim()
-				+ ": "
-				+ doc.getElementsByTagName("message").item(0).getTextContent()
-				.trim();
-	}else{
-		return getJoinURL(username, password, meetingID, record, welcome, metadata, xml);
 	}
+
+	if (doc.getElementsByTagName("returncode").item(0).getTextContent()
+			.trim().equals("SUCCESS")) {
+
+		//
+		// Looks good, now return a URL to join that meeting
+		//
+
+		String join_parameters = "meetingID=" + urlEncode(meetingID)
+			+ "&fullName=" + urlEncode(username) + "&password="+password;
+
+
+		Document joinDoc = null;
+		String joinURL = null;
+		try {
+			joinURL = base_url_join + join_parameters + "&checksum="
+					+ checksum("join" + join_parameters + salt);
+			joinDoc = parseXml( postURL(joinURL, xml_param));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (joinDoc.getElementsByTagName("returncode").item(0).getTextContent()
+				.trim().equals("SUCCESS")) {
+			return joinURL;
+		}
+
+		return BigBlueButtonURL;
+	}
+
+	return doc.getElementsByTagName("messageKey").item(0).getTextContent()
+		.trim()
+		+ ": "
+		+ doc.getElementsByTagName("message").item(0).getTextContent()
+		.trim();
 }
 
 
