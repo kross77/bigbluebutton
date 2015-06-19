@@ -204,40 +204,45 @@ public String getJoinURL(String username, String password, String meetingID, Str
 		e.printStackTrace();
 	}
 
-	if (doc.getElementsByTagName("returncode").item(0).getTextContent()
-			.trim().equals("SUCCESS")) {
 
-		//
-		// Looks good, now return a URL to join that meeting
-		//  
-
-		String join_parameters = "meetingID=" + urlEncode(meetingID)
-			+ "&fullName=" + urlEncode(username) + "&password="+password;
-
-
-		Document joinDoc = null;
-		String joinURL = null;
-		try {
-			joinURL = base_url_join + join_parameters + "&checksum="
-					+ checksum("join" + join_parameters + salt);
-			joinDoc = parseXml( postURL(joinURL, xml_param));
-		} catch (Exception e) {
-			return getJoinURL(username, password, meetingID, record, welcome, metadata, xml);
-		}
-
-		if (joinDoc.getElementsByTagName("returncode").item(0).getTextContent()
+	if(doc != null){
+		if (doc.getElementsByTagName("returncode").item(0).getTextContent()
 				.trim().equals("SUCCESS")) {
-			return joinURL;
+
+			//
+			// Looks good, now return a URL to join that meeting
+			//
+
+			String join_parameters = "meetingID=" + urlEncode(meetingID)
+					+ "&fullName=" + urlEncode(username) + "&password="+password;
+
+
+			Document joinDoc = null;
+			String joinURL = null;
+			try {
+				joinURL = base_url_join + join_parameters + "&checksum="
+						+ checksum("join" + join_parameters + salt);
+				joinDoc = parseXml( postURL(joinURL, xml_param));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			if (joinDoc.getElementsByTagName("returncode").item(0).getTextContent()
+					.trim().equals("SUCCESS")) {
+				return joinURL;
+			}
+
+			return BigBlueButtonURL;
 		}
 
-		return BigBlueButtonURL;
+		return doc.getElementsByTagName("messageKey").item(0).getTextContent()
+				.trim()
+				+ ": "
+				+ doc.getElementsByTagName("message").item(0).getTextContent()
+				.trim();
+	}else{
+		return getJoinURL(username, password, meetingID, record, welcome, metadata, xml);
 	}
-	
-	return doc.getElementsByTagName("messageKey").item(0).getTextContent()
-		.trim()
-		+ ": " 
-		+ doc.getElementsByTagName("message").item(0).getTextContent()
-		.trim();
 }
 
 
