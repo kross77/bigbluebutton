@@ -214,8 +214,23 @@ public String getJoinURL(String username, String password, String meetingID, Str
 		String join_parameters = "meetingID=" + urlEncode(meetingID)
 			+ "&fullName=" + urlEncode(username) + "&password="+password;
 
-		return base_url_join + join_parameters + "&checksum="
-			+ checksum("join" + join_parameters + salt);
+
+		Document joinDoc = null;
+		String joinURL = null;
+		try {
+			joinURL = base_url_join + join_parameters + "&checksum="
+					+ checksum("join" + join_parameters + salt);
+			joinDoc = parseXml( postURL(joinURL, xml_param));
+		} catch (Exception e) {
+			return getJoinURL(username, password, meetingID, record, welcome, metadata, xml);
+		}
+
+		if (joinDoc.getElementsByTagName("returncode").item(0).getTextContent()
+				.trim().equals("SUCCESS")) {
+			return joinURL;
+		}
+
+		return BigBlueButtonURL;
 	}
 	
 	return doc.getElementsByTagName("messageKey").item(0).getTextContent()
