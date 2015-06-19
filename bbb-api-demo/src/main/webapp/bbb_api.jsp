@@ -206,11 +206,6 @@ public String getJoinURL(String username, String password, String meetingID, Str
 	}
 	if(!(doc != null)){
 		try {
-			wait(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		try {
 			doc = parseXml( postURL( url, xml_param ) );
 		} catch (Exception e) {
 			e.printStackTrace();
